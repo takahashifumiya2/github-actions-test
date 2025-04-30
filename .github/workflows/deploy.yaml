@@ -12,6 +12,7 @@ jobs:
     steps:
       - run: echo deploy staging
       - run: echo secret ${{ secrets.SAMPLE_SECRET }}
+      - run: date
   
   deploy_production:
     runs-on: ubuntu-latest
@@ -21,3 +22,4 @@ jobs:
     steps:
       - run: echo deploy production
       - run: echo secret ${{ secrets.SAMPLE_SECRET }}
+      - run: date
