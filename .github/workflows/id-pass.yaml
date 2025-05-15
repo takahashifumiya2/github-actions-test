@@ -1,0 +1,22 @@
+name: IdPass
+
+on: 
+  pull_request:
+    types: [opened, reopened, closed]
+
+jobs:
+  create-change-set:
+    if: github.event.action == 'opened' || github.event.action == 'reopened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: create change set and get id
+        id: create-change-set
+        run: echo "change_set_id" >> $GITHUB_OUTPUT
+  deploy-change-set:
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    environment:
+      name: prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy change set and get id
+        run: echo "deployed!"
